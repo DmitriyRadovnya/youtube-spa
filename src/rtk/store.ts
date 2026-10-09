@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./authSlice";
+import searchReducer from "./searchSlice";
 import { authListener } from "./authListener";
 import {
   useDispatch,
@@ -10,14 +11,9 @@ import {
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    search: searchReducer,
   },
   middleware: (getDefault) => getDefault().prepend(authListener.middleware),
-  // preloadedState: {
-  //   auth: {
-  //     token: localStorage.getItem("token") ?? null,
-  //     isAuthenticated: Boolean(localStorage.getItem("token")),
-  //   },
-  // },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
